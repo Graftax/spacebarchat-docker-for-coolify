@@ -7,6 +7,7 @@ services:
     restart: unless-stopped
     networks:
       - backend
+      - frontend
     ports:
       - "443:3001"
     volumes:
@@ -39,4 +40,6 @@ volumes:
   spacebar-storage:
   db:
 networks:
+  frontend:
+    external: true
   backend:
