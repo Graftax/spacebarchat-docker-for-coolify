@@ -16,7 +16,7 @@ services:
       db:
         condition: service_healthy
     labels:
-      - traefik.http.services.spacebar.loadbalancer.server.port=${PORT}
+      - traefik.http.services.spacebar.loadbalancer.server.port=3001
   db:
     image: postgres:15-alpine
     restart: unless-stopped
