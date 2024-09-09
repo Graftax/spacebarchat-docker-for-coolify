@@ -5,8 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile-prod
     restart: unless-stopped
+    networks:
+      - backend
     ports:
-      - "3001:3001"
       - "443:3001"
     volumes:
       - spacebar-storage:/exec/persistent/storage
@@ -25,8 +26,8 @@ services:
       - POSTGRES_USER=${POSTGRES_USER:?err}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?err}
       - POSTGRES_DB=${POSTGRES_DATABASE:?err}
-    ports:
-      - '127.0.0.1:5432:5432'
+    networks:
+      - backend
     volumes: 
       - db:/var/lib/postgresql/data
     healthcheck:
@@ -37,3 +38,5 @@ services:
 volumes:
   spacebar-storage:
   db:
+networks:
+  backend:
