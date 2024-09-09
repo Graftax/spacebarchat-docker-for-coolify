@@ -16,19 +16,9 @@ services:
       db:
         condition: service_healthy
     labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=spacebar-external-traefik-routing"
-      # https
-      - "traefik.http.routers.spacebar.rule=Host(`spacebar.graftax.net`)"
-      - "traefik.http.routers.spacebar.tls=true"
-      - "traefik.http.routers.spacebar.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.spacebar.entrypoints=websecure"
-      # http (redirect to https)
-      - "traefik.http.routers.spacebar-http.rule=Host(`spacebar.graftax.net`)"
-      - "traefik.http.routers.spacebar-http.entrypoints=web"
-      - "traefik.http.routers.spacebar-http.middlewares=redirect-to-https@file"
-    networks:
-     - net-spacebar-ext
+      - traefik.enable=true
+      - "traefik.http.routers.<unique_router_name>.rule=Host(`graftax.net`) && PathPrefix(`/`)"
+      - traefik.http.routers.<unique_router_name>.entryPoints=https
   db:
     image: postgres:15-alpine
     restart: unless-stopped
@@ -48,7 +38,3 @@ services:
 volumes:
   spacebar-storage:
   db:
-networks:
-  net-spacebar-ext:
-    external: true
-    name: spacebar-external-traefik-routing
