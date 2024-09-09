@@ -17,7 +17,7 @@ services:
         condition: service_healthy
     labels:
       - traefik.enable=true
-      - "traefik.http.routers.<unique_router_name>.rule=Host(`graftax.net`) && PathPrefix(`/`)"
+      - "traefik.http.routers.<unique_router_name>.rule=Host(`coolify.io`) && PathPrefix(`/`)"
       - traefik.http.routers.<unique_router_name>.entryPoints=https
   db:
     image: postgres:15-alpine
