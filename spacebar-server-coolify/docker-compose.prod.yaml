@@ -18,7 +18,7 @@ services:
     labels:
       - traefik.enable=true
       - "traefik.http.routers.<unique_router_name>.rule=Host(`coolify.io`) && PathPrefix(`/`)"
-      - traefik.http.routers.<unique_router_name>.entryPoints=https
+      - traefik.http.routers.<unique_router_name>.entryPoints=http
   db:
     image: postgres:15-alpine
     restart: unless-stopped
