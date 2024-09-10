@@ -13,7 +13,7 @@ WORKDIR exec
 RUN mkdir -p persistent/database ; mkdir -p persistent/storage
 RUN apk add --update git ; npm install pg --save
 COPY --from=builder /devel/server/ . 
-ADD ../testconfig.json .
+ADD ../testconfig.json ./spacebar-server-config.json
 RUN adduser -D spacebar ; chown spacebar:spacebar -R .
 
 USER spacebar
