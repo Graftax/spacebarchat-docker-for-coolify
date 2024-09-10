@@ -12,6 +12,7 @@ services:
       - STORAGE_PROVIDER="file"
       - STORAGE_LOCATION="/exec/persistent/storage/"
       - PORT=${SPACEBAR_PORT}
+      - CONFIG_PATH=./spacebar-server-config.json
     depends_on:
       db:
         condition: service_healthy
