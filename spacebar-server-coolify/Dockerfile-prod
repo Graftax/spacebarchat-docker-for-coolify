@@ -7,6 +7,7 @@ RUN git clone https://github.com/spacebarchat/server.git
 RUN cd server ; npm i ; npm run setup
 
 COPY ./testconfig.json ./spacebar-server-config.json
+COPY ./testconfig.json ./spacebar-server-config2.json
 
 From node:18-alpine
 
