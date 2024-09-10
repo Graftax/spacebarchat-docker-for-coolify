@@ -1,0 +1,11 @@
+{
+    "gateway": {
+        "endpointPublic": "ws://spacebar.graftax.net:3001"
+    },
+    "cdn": {
+        "endpointPublic": "https://spacebar.graftax.net:3001"
+    },
+    "api": {
+        "endpointPublic": "https://spacebar.graftax.net:3001/api/"
+    }
+}

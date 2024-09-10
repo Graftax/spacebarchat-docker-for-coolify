@@ -6,9 +6,7 @@ RUN apt-get update ; apt-get upgrade -y ; apt-get install -y python-is-python3 b
 RUN git clone https://github.com/spacebarchat/server.git
 RUN cd server ; npm i ; npm run setup
 
-RUN touch ./spacebar-server-config.json
-RUN echo $SPACEBAR_SERVER_CONFIG >> ./spacebar-server-config.json
-RUN cat ./spacebar-server-config.json
+COPY ./testconfig.json ./spacebar-server-config.json
 
 From node:18-alpine
 
