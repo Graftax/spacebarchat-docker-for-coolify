@@ -6,9 +6,6 @@ RUN apt-get update ; apt-get upgrade -y ; apt-get install -y python-is-python3 b
 RUN git clone https://github.com/spacebarchat/server.git
 RUN cd server ; npm i ; npm run setup
 
-COPY --from=builder /testconfig.json /spacebar-server-config.json
-COPY --from=builder /testconfig.json /spacebar-server-config2.json
-
 From node:18-alpine
 
 EXPOSE 3001
@@ -16,6 +13,7 @@ WORKDIR exec
 RUN mkdir -p persistent/database ; mkdir -p persistent/storage
 RUN apk add --update git ; npm install pg --save
 COPY --from=builder /devel/server/ . 
+COPY --from=builder /testconfig.json /spacebar-server-config.json
 RUN adduser -D spacebar ; chown spacebar:spacebar -R .
 
 USER spacebar
