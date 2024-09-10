@@ -18,7 +18,13 @@ services:
         condition: service_healthy
     labels:
       - traefik.http.services.spacebar.loadbalancer.server.scheme=http
-      - traefik.http.middlewares.testheader.headers.accesscontrolalloworigin=*
+
+      # Enable CORS headers
+      - traefik.http.middlewares.cors.headers.accesscontrolallowmethods=*
+      - traefik.http.middlewares.cors.headers.accesscontrolalloworiginlist=*
+      - traefik.http.middlewares.cors.headers.accesscontrolmaxage=100
+      - traefik.http.middlewares.cors.headers.addvaryheader=true
+
   db:
     image: postgres:15-alpine
     restart: unless-stopped
